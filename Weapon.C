@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "weapons.H"
+#include "Weapon.H"
 
-using namespace simon;
+using namespace prs;
 
 Result Paper::accept( Weapon* weapon )
 {

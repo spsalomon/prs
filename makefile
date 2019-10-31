@@ -1,10 +1,10 @@
 CXX    		:= -g++
-CXXFLAGS 	:= -pedantic-errors -Wall -Wextra -Werror -std=c++11
+CXXFLAGS 	:= -pedantic-errors -Wall -Wextra -Werror -std=c++14
 LDFLAGS  	:= -L/usr/lib -lstdc++ -lm
 BUILD    	:= $(shell pwd)/build
 OBJ_DIR 	:= $(BUILD)/objects
 APP_DIR		:= $(shell pwd)
-TARGET		:= psr
+TARGET		:= prs
 INCLUDE		:= -Iinclude/
 SRC		:= $(wildcard *.C) 
 OBJECTS 	:= $(SRC:%.C=$(OBJ_DIR)/%.o)

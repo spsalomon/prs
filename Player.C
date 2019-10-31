@@ -1,11 +1,12 @@
 #include <string>
 #include <iostream>
 #include <stdlib.h>
+#include <vector>
 
 #include "Player.H"
-#include "weapons.H"
+#include "Weapon.H"
 
-using namespace simon;
+using namespace prs;
 
 Player::Player( std::string name )
   : name_( name )
@@ -41,36 +42,46 @@ Weapon* HumanPlayer::getHand()
   {
     case 'P':
     case 'p':
-      return getWeapon( Hand::Paper );
+      return weapons_[Hand::Paper];
     case 'R':
     case 'r':
-      return getWeapon( Hand::Rock );
+      return weapons_[Hand::Rock];
     case 'S':
     case 's':
-      return getWeapon( Hand::Scissor );
+      return weapons_[Hand::Scissor];
     default:
       // Should never get here
-      return getWeapon( Hand::LAST_Hand );
-  }
-}
-
-Weapon* Player::getWeapon( Hand hand ) 
-{
-  switch ( hand )
-  {
-    case Hand::Paper:
-      return new Paper();
-    case Hand::Rock:
-      return new Rock();
-    case Hand::Scissor:
-      return new Scissor();
-    default:
-      return nullptr;
+      return weapons_[Hand::Last_Hand];
   }
 }
 
 Weapon* ComputerPlayer::getHand()
 {
-  int last = static_cast<std::underlying_type<Hand>::type>( Hand::LAST_Hand ) - 1;
-  return getWeapon( Hand( rand() % last ) );
+  return weapons_[ Hand( rand() % weapons_.size() ) ];
+}
+
+void Player::initWeapons( std::vector<Hand> weapons )
+{ 
+  Weapon* hand;
+
+  for ( auto weapon : weapons ) {
+    switch ( weapon )
+    {
+      case Hand::Paper:
+        hand = new Paper();
+        break;
+      case Hand::Rock:
+        hand = new Rock();
+        break;
+      case Hand::Scissor:
+        hand = new Scissor();
+        break;
+      default:
+        hand = nullptr;
+        break;
+    }
+    weapons_[weapon] = hand;
+
+    std::cout << "loaded " << hand->getWeaponName() << std::endl;
+  }
 }

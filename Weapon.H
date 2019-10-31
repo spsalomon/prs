@@ -1,10 +1,11 @@
-#ifndef WEAPONS_H
-#define WEAPONS_H
+#ifndef WEAPON_H
+#define WEAPON_H
 
 #include <string>
+#include <memory>
 
 
-namespace simon
+namespace prs
 {
   enum class Result { Win, Lose, Tie };
 

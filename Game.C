@@ -1,11 +1,12 @@
 #include <iostream>
 #include <memory>
 #include <sstream>
+#include <vector>
 
-#include "weapons.H"
+#include "Weapon.H"
 #include "Game.H"
 
-using namespace simon;
+using namespace prs;
 
 Game::Game( Player* p1, Player* p2, int numGames )
   : p1_( p1 )

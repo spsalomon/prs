@@ -2,12 +2,12 @@
 #include <string>
 #include<bits/stdc++.h> 
 
-#include "weapons.H"
+#include "Weapon.H"
 
 #include "Game.H"
 #include "Player.H"
 
-using namespace simon;
+using namespace prs;
 
 int main() 
 {
@@ -30,8 +30,13 @@ int main()
 
   std::unique_ptr<Player> human = std::unique_ptr<HumanPlayer>( new HumanPlayer( name ) );
   std::unique_ptr<Player> computer = std::unique_ptr<ComputerPlayer>( new ComputerPlayer( "Computer" ) );
-  std::unique_ptr<Game> game = std::unique_ptr<Game>( new Game( computer.get(), human.get(), numGames ) );
 
+  std::vector<Hand> weapons{ Hand::Paper, Hand::Rock, Hand::Scissor };
+
+  human->initWeapons(weapons);
+  computer->initWeapons(weapons);
+
+  std::unique_ptr<Game> game = std::unique_ptr<Game>( new Game( computer.get(), human.get(), numGames ) );
   game->run();
 
   Player* winner = game->getWinner();

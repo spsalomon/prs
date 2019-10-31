@@ -4,7 +4,7 @@
 #include <memory>
 #include "Player.H"
 
-namespace simon
+namespace prs
 {
   class Weapon;
   class Player;
@@ -20,9 +20,11 @@ namespace simon
     private:
       Player* p1_;
       Player* p2_;
+      int numGamesToPlay_ = 0;
+      std::vector<Weapon*> weapons_;
+
       Player* winner_ = nullptr;
       int numGamesSoFar_ = 0;
-      int numGamesToPlay_ = 0;
       bool done_ = false;
       int p1Score_ = 0;
       int p2Score_ = 0;
